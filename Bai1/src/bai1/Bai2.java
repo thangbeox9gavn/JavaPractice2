@@ -11,35 +11,35 @@ import java.util.Scanner;
  *
  * @author Admin
  */
-public class Bai1 {
+public class Bai2 {
 
-    /**
-     * @param args the command line arguments
-     */
-    static void in(int a[],int n){
-        for(int i = 0; i < n; i++){
-            System.out.print(a[i]+" ");
+    static void in(int a[], int n) {
+        for (int i = 0; i < n; i++) {
+            System.out.print(a[i] + " ");
         }
     }
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
         int a[] = new int[100];
-        for(int i = 0; i< n;i++){
+        for (int i = 0; i < n; i++) {
             a[i] = in.nextInt();
         }
-        for(int i = 0; i < n-1;i++){
-            for(int j = i+1; j< n;j++){
-                if(a[i] > a[j]){
-                    int x = a[j];
-                    a[j] = a[i];
-                    a[i] = x;
+        for (int i = 0; i < n - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < n; j++) {
+                if (a[min] > a[j]) {
+                    min = j;
+
                 }
+                int x = a[i];
+                a[i] = a[min];
+                a[min] = x;
             }
-            System.out.print("Buoc"+(i+1)+":");
-            in(a,n);
+            System.out.print("Buoc " + (i + 1) + ":");
+            in(a, n);
             System.out.println("");
         }
     }
-    
 }

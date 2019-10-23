@@ -12,22 +12,31 @@ import java.util.Scanner;
  * @author Admin
  */
 public class Bai12 {
-    static int M = (int) 1e9+7;
+
+    static long M = (long) (1e9 + 7);
+
     public static void main(String[] args) {
-       
+
         Scanner sc = new Scanner(System.in);
-        int n,t,k;
+        int n, t, k;
         t = sc.nextInt();
-        while(t-- >0){
-            n= sc.nextInt();
-            k=sc.nextInt();
-            System.out.println(powM(n,k));
+        while (t-- > 0) {
+            n = sc.nextInt();
+            k = sc.nextInt();
+            System.out.println(powM(n, k));
         }
     }
-    static long powM(int n, int k){
-        if(k == 0) return 1;
-        long x = powM(n,k/2);
-        if(k%2 != 0) return x*x%M;
-        return (x*x%M)*x*M;
+
+    static long powM(int n, int k) {
+        if (k == 0) {
+            return 1;
+        }
+        long x = powM(n, k / 2);
+        if (k % 2 != 0) {
+            return (x * x % M) * n % M;
+        } else {
+            return (x * x)%M;
+        }
+
     }
 }
