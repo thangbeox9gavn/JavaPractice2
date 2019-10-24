@@ -13,41 +13,40 @@ import java.util.Scanner;
  */
 public class Bai9 {
 
-    static int binarySearch(int a[], int n, int x) {
-        int d = 0;
-        int c = n-1;
-        while (d < c) {
-            int m = (c - d) / 2;
-            if (x == a[m]) {
-                return x;
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        while (t-- > 0) {
+            int n = in.nextInt();
+            long k = in.nextLong();
+            long[] a = new long[n];
+
+            for (int i = 0; i < n; i++) {
+                a[i] = in.nextInt();
             }
-            if (x < a[m]) {
-                c = m - 1;
+            int left = 0;
+            int right = n - 1;
+            int pos = binSearch(a, k, left, right);
+            if (pos != -1) {
+                System.out.println(pos);
             } else {
-                d = m + 1;
+                System.out.println("NO");
             }
         }
-        return -1;
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-        while (t-- > 0) {
-            int n = sc.nextInt();
-            int k = sc.nextInt();
-
-            int a[] = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = sc.nextInt();
-            }
-            int result = binarySearch(a, n, k);
-
-            if (result == -1) {
-                System.out.println("NO");
+    static int binSearch(long[] a, long k, int l, int r) {
+        if (l < r) {
+            int mid = (l + r - 1) / 2;
+            if (a[mid] == k) {
+                return mid + 1;
             } else {
-                System.out.println(result);
+                if (a[mid] < k) {
+                    return binSearch(a, k, mid + 1, r);
+                }
             }
+            return binSearch(a, k, l, mid);
         }
+        return -1;
     }
 }
